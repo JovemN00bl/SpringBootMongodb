@@ -30,21 +30,14 @@ public class UserService {
     }
 
     public User update(User obj){
-
             User entity = findById(obj.getId());
             updateData(entity,obj);
             return repository.save(entity);
     }
-
-
-
-
     private void updateData(User entity, User userObj){
         entity.setName(userObj.getName());
         entity.setEmail(userObj.getEmail());
     }
-
-
 
     public void delete(String id){
         findById(id);

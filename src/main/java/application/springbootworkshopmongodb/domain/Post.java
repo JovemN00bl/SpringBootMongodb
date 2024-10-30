@@ -1,10 +1,14 @@
 package application.springbootworkshopmongodb.domain;
 
+import application.springbootworkshopmongodb.dto.AuthorDTO;
+import application.springbootworkshopmongodb.dto.CommentDTO;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -14,14 +18,16 @@ public class Post implements Serializable {
 
     @Id
     private String id;
-    private User author;
+    private AuthorDTO author;
     private Date date;
     private String title;
     private String body;
 
+    private List<CommentDTO> comments = new ArrayList<>();
+
     public Post(){}
 
-    public Post(String id,User author ,String body, String title, Date date) {
+    public Post(String id,AuthorDTO author ,String body, String title, Date date) {
         this.id = id;
         this.body = body;
         this.title = title;
@@ -61,12 +67,20 @@ public class Post implements Serializable {
         this.date = date;
     }
 
-    public User getauthor() {
+    public AuthorDTO getAuthor() {
         return author;
     }
 
-    public void setauthor(User author) {
+    public void setAuthor(AuthorDTO author) {
         this.author = author;
+    }
+
+    public List<CommentDTO> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<CommentDTO> comments) {
+        this.comments = comments;
     }
 
     @Override
